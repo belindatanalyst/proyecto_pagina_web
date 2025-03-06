@@ -39,7 +39,9 @@ if not include_small_mfr:
 st.dataframe(df)
 
 # **Nueva Gráfica: Tipos de vehículos por fabricante**
-st.subheader("Tipos de Vehículos por Fabricante")
+st.subheader("Vehicle types by manufacturer")
+
+car_data["manufacturer"] = car_data["model"].apply(lambda x: x.split()[0] if isinstance(x, str) else x)
 
 # Crear el gráfico de barras apiladas
 fig_bar = px.bar(car_data,x="model", color="type", title="Vehicle types by manufacturer", barmode="stack")
