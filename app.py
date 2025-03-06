@@ -4,9 +4,17 @@ import plotly.express as px
 
 car_data = pd.read_csv('vehicles_us.csv')
 
+# Titulo
+st.title("Vehicle Data Viewer: Prices, Types, and Manufacturer Comparisons")
+# Encabezado con texto 
+st.markdown("""
+## Explore and Analyze Vehicle Data
+            
+Welcome to the Vehicle Data Viewer! This tool lets you explore various aspects of vehicle data, including prices, types, and manufacturer comparisons. You can filter by specific manufacturers, visualize vehicle types by brand, compare price distributions, and more. Use the interactive options below to customize the data you want to see.
+""")
 
 # Primer grafica
-st.title("Data Viewer")
+st.subheader("Data Viewer")
 df = car_data.copy()
 # Checkbox para filtrar modelos con menos de 1000 anuncios
 include_small_mfr = st.checkbox("Include manufacturers with less than 1000 ads", value=True)
@@ -48,9 +56,9 @@ df_filtered = car_data[car_data['model'].isin([manufacturer_1, manufacturer_2])]
 # Si la casilla esta marcada, normalizar el histograma
 if normalize_hist:
     # Crear el grafico de histograma normalizado para comparar 
-    fig_hist = px.histogram(df_filtered, x="price", color="m", histnorm="probability density")
+    fig_hist = px.histogram(df_filtered, x="price", color="model", histnorm="probability density")
 else:
     # Crear el grafico de histograma sin normalizar para comparar 
-    fig_hist = px.histogram(df_filtered, x="price", color="manufacturer")
+    fig_hist = px.histogram(df_filtered, x="price", color="model")
 
 st.plotly_chart(fig_hist, use_container_width=True)
