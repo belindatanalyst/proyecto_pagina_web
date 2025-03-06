@@ -22,14 +22,18 @@ build_histogram = st.checkbox('Construir un histograma')
 if build_histogram: # si la casilla de verificación está seleccionada
     st.write('Construir un histograma para la columna odómetro')
 
-st.title("Data viewer")
+# Título de la sección de visualización de datos
+st.title("Data Viewer")
 
-# Checkbox para filtrar datos (ejemplo similar a la imagen)
+# Inicializar el DataFrame para asegurarse de que existe
+df = car_data.copy()
+
+# Checkbox para filtrar modelos con menos de 1000 anuncios
 include_small_mfr = st.checkbox("Include manufacturers with less than 1000 ads", value=True)
 
 if not include_small_mfr:
     manufacturer_counts = car_data['model'].value_counts()
     df = car_data[car_data['model'].isin(manufacturer_counts[manufacturer_counts >= 1000].index)]
 
-# Mostrar la tabla
+# Mostrar la tabla en Streamlit
 st.dataframe(df)
