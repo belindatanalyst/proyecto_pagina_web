@@ -44,6 +44,6 @@ st.subheader("Vehicle types by manufacturer")
 car_data["manufacturer"] = car_data["model"].apply(lambda x: x.split()[0] if isinstance(x, str) else x)
 
 # Crear el gráfico de barras apiladas
-fig_bar = px.bar(car_data,x="model", color="type", title="Vehicle types by manufacturer", barmode="stack")
+fig_bar = px.bar(car_data,x="manufacturer", color="type", barmode="stack")
  
 st.plotly_chart(fig_bar, use_container_width=True)
