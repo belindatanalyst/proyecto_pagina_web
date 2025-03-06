@@ -3,12 +3,12 @@ import pandas as pd
 import plotly.express as px
 
 car_data = pd.read_csv('vehicles_us.csv') # leer los datos
-st.header('Analisis de vehiculos')
-hist_button = st.button('Construir histograma') # crear un botón
+st.header('Vehicle Analysis')
+hist_button = st.button('Build Histogram') # crear un botón
         
 if hist_button: # al hacer clic en el botón
             # escribir un mensaje
-    st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
+    st.write('Creating a histogram for the car sales listing dataset')
             
             # crear un histograma
     fig = px.histogram(car_data, x="odometer")
@@ -17,10 +17,10 @@ if hist_button: # al hacer clic en el botón
     st.plotly_chart(fig, use_container_width=True)
 
 # crear una casilla de verificación
-build_histogram = st.checkbox('Construir un histograma')
+build_histogram = st.checkbox('Build a histogram')
 
 if build_histogram: # si la casilla de verificación está seleccionada
-    st.write('Construir un histograma para la columna odómetro')
+    st.write('Build a histogram for the odometer column')
 
 # Título de la sección de visualización de datos
 st.title("Data Viewer")
@@ -37,3 +37,5 @@ if not include_small_mfr:
 
 # Mostrar la tabla en Streamlit
 st.dataframe(df)
+
+
