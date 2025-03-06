@@ -33,7 +33,29 @@ st.plotly_chart(fig_bar, use_container_width=True)
 # Nueva Gráfica
 st.subheader("Histogram of condition vs model_year")
 
-fig_hist = px.histogram(car_data, x="model_year", color="condition", title="Histogram of Condition vs Model Year")
+fig_hist = px.histogram(car_data, x="model_year", color="condition")
 
 # Mostrar en Streamlit
 st.plotly_chart(fig_hist)
+
+# Nueva Gráfica: Distribución de precios por fabricante
+st.subheader("Compare price distribution between manufacturers")
+
+# Obtener una lista única de fabricantes para los selectores
+manufacturers = car_data['manufacturer'].unique()
+
+# Selección de dos fabricantes
+manufacturer_1 = st.selectbox("Select manufacturer 1", manufacturers)
+manufacturer_2 = st.selectbox("Select manufacturer 2", manufacturers)
+
+# Casilla de verificación para normalizar el histograma
+normalize_hist = st.checkbox("Normalize histogram", value=False)
+
+# Filtrar el DataFrame para incluir solo los dos fabricantes seleccionados
+df_filtered = car_data[car_data['manufacturer'].isin([manufacturer_1, manufacturer_2])]
+
+# Crear el gráfico de cajas (box plot) para comparar la distribución de precios
+fig_box = px.box(df_filtered, x="percent", y="price")
+
+# Mostrar en Streamlit
+st.plotly_chart(fig_box, use_container_width=True)
