@@ -38,4 +38,10 @@ if not include_small_mfr:
 # Mostrar la tabla en Streamlit
 st.dataframe(df)
 
+# **Nueva Gráfica: Tipos de vehículos por fabricante**
+st.subheader("Tipos de Vehículos por Fabricante")
 
+# Crear el gráfico de barras apiladas
+fig_bar = px.bar(car_data,x="model", color="type", title="Vehicle types by manufacturer", barmode="stack")
+ 
+st.plotly_chart(fig_bar, use_container_width=True)
