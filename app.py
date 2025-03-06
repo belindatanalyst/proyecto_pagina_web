@@ -29,3 +29,11 @@ car_data["manufacturer"] = car_data["model"].apply(lambda x: x.split()[0] if isi
 fig_bar = px.bar(car_data,x="manufacturer", color="type", barmode="stack")
  
 st.plotly_chart(fig_bar, use_container_width=True)
+
+# Nueva Gráfica
+st.subheader("Histogram of condition vs model_year")
+
+fig_hist = px.histogram(car_data, x="model_year", color="condition", title="Histogram of Condition vs Model Year")
+
+# Mostrar en Streamlit
+st.plotly_chart(fig_hist)
